@@ -53,7 +53,7 @@ const InputField = <T extends FieldValues>({
               </div>
             )}
             <FormControl>
-              <div className="relative w-full">
+              <div className=" w-full">
                 <Input
                   min={min}
                   type={type}

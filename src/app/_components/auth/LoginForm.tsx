@@ -1,3 +1,4 @@
+"use client";
 import { z } from "zod";
 import { LoginShema } from "./forms.config";
 import { useForm } from "react-hook-form";
