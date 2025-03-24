@@ -5,6 +5,7 @@ export const LoginShema = z.object({
   password: z.string(),
 });
 export const RegistratinShema = z.object({
-  LoginShema,
+  email: z.string(),
+  password: z.string(),
   name: z.string(),
 });

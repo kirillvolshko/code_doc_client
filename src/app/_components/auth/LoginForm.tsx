@@ -7,7 +7,7 @@ import InputField from "@/components/common/InputField";
 import { Button } from "@/components/ui/button";
 
 type FormValues = z.infer<typeof LoginShema>;
-export const LoginFrom = () => {
+export const LoginForm = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(LoginShema),
   });
