@@ -1,23 +1,28 @@
+"use client";
 import { BaseQueryParams } from "../baseQuery";
 
-export const authService = BaseQueryParams("auth", ["USER"]).injectEndpoints({
+export const authService = BaseQueryParams("authUser", [
+  "USER",
+]).injectEndpoints({
   endpoints: (builder) => ({
-    getUser: builder.query({
-      query: () => ({
-        url: "/auth/get-me",
-        method: "GET",
-      }),
-
-      providesTags: () => ["USER"],
-    }),
-    registration: builder.mutation({
+    login: builder.mutation({
       query: (body) => ({
-        url: "/auth/registration",
+        url: "/login",
         method: "POST",
         credentials: "include",
         body,
       }),
+      invalidatesTags: ["USER"],
+    }),
+    registration: builder.mutation({
+      query: (body) => ({
+        url: "/registration",
+        method: "POST",
+        credentials: "include",
+        body,
+      }),
+      invalidatesTags: ["USER"],
     }),
   }),
 });
-export const { useRegistrationMutation } = authService;
+export const { useRegistrationMutation, useLoginMutation } = authService;

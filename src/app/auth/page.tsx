@@ -31,8 +31,8 @@ export const AuthPage = () => {
             </p>
             <Button onClick={() => setIsRegistering((prev) => !prev)}>
               {isRegistering
-                ? "Already registered?"
-                : "Don't have an account? Register"}
+                ? "Don't have an account? Register"
+                : "Already registered?"}
             </Button>
           </div>
         </motion.div>

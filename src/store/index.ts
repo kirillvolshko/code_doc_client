@@ -1,7 +1,9 @@
+"use client";
 import { combineReducers, configureStore, Middleware } from "@reduxjs/toolkit";
 import { authService } from "./auth/authService";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
+import authReducer from "./auth/authSlice";
 
 const persistConfig = {
   key: "root",
@@ -11,6 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   [authService.reducerPath]: authService.reducer,
+  auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

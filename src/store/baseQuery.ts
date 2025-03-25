@@ -1,3 +1,4 @@
+"use client";
 import { BaseApi } from "@/config";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "./index";
@@ -5,9 +6,9 @@ import { RootState } from "./index";
 const baseQueryWithReAuth = fetchBaseQuery({
   baseUrl: BaseApi,
   prepareHeaders: (headers, { getState }) => {
-    const { accessToken } = (getState() as RootState).auth;
-    if (accessToken) {
-      headers.set("Authorization", `Bearer ${accessToken}`);
+    const { access_token } = (getState() as RootState).auth;
+    if (access_token) {
+      headers.set("Authorization", `Bearer ${access_token}`);
     }
     return headers;
   },

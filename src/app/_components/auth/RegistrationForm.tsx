@@ -6,14 +6,22 @@ import { z } from "zod";
 import { RegistratinShema } from "./forms.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
+import { useRegistrationMutation } from "@/store/auth/authService";
 
 type FormValues = z.infer<typeof RegistratinShema>;
 export const RegistrationForm = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(RegistratinShema),
+    defaultValues: { name: "", email: "", password: "" },
   });
-  const handleOnSubmit = () => {
-    console.log("ok");
+  const [registration] = useRegistrationMutation();
+  const handleOnSubmit = async (data: FormValues) => {
+    try {
+      await registration(data).unwrap();
+      form.reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
