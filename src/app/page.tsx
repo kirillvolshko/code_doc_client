@@ -1,6 +1,6 @@
 import { AuthPage } from "./auth/page";
 
-export default function RootLayout() {
+export default function RootPage() {
   return (
     <div className="">
       <AuthPage />
