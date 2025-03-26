@@ -23,6 +23,16 @@ export const authService = BaseQueryParams("authUser", [
       }),
       invalidatesTags: ["USER"],
     }),
+    refresh: builder.mutation({
+      query: (body) => ({
+        url: "/refresh",
+        method: "POST",
+        credentials: "include",
+        body,
+      }),
+      invalidatesTags: ["USER"],
+    }),
   }),
 });
-export const { useRegistrationMutation, useLoginMutation } = authService;
+export const { useRegistrationMutation, useLoginMutation, useRefreshMutation } =
+  authService;

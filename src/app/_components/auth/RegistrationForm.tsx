@@ -7,6 +7,8 @@ import { RegistratinShema } from "./forms.config";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { useRegistrationMutation } from "@/store/auth/authService";
+import { useDispatch } from "react-redux";
+import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
 
 type FormValues = z.infer<typeof RegistratinShema>;
 export const RegistrationForm = () => {
@@ -14,10 +16,17 @@ export const RegistrationForm = () => {
     resolver: zodResolver(RegistratinShema),
     defaultValues: { name: "", email: "", password: "" },
   });
+  const dispatch = useDispatch();
   const [registration] = useRegistrationMutation();
+  console.log();
   const handleOnSubmit = async (data: FormValues) => {
     try {
-      await registration(data).unwrap();
+      const { refreshToken, accessToken, id } = await registration(
+        data
+      ).unwrap();
+      dispatch(setToken(accessToken));
+      dispatch(setRefreshToken(refreshToken));
+      dispatch(setUserId(id));
       form.reset();
     } catch (error) {
       console.log(error);

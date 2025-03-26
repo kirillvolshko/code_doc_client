@@ -6,14 +6,32 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import InputField from "@/components/common/InputField";
 import { Button } from "@/components/ui/button";
+import { useLoginMutation } from "@/store/auth/authService";
+import { useDispatch } from "react-redux";
+import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
+import { useRouter } from "next/router";
 
 type FormValues = z.infer<typeof LoginShema>;
 export const LoginForm = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(LoginShema),
+    defaultValues: { email: "", password: "" },
   });
-  const handleOnSubmit = () => {
-    console.log("ok");
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const [login] = useLoginMutation();
+  const handleOnSubmit = async (data: FormValues) => {
+    try {
+      const { accessToken, refreshToken, id } = await login(data).unwrap();
+      dispatch(setToken(accessToken));
+      dispatch(setRefreshToken(refreshToken));
+      dispatch(setUserId(id));
+      form.reset();
+      router.push("/home");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
