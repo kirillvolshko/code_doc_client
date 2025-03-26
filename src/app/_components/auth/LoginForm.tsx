@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useLoginMutation } from "@/store/auth/authService";
 import { useDispatch } from "react-redux";
 import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type FormValues = z.infer<typeof LoginShema>;
 export const LoginForm = () => {

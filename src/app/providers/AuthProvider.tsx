@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const refreshToken = async () => {
         setInterval(async () => {
           const { accessToken } = await refresh({
-            refresh_token,
+            refreshToken: refresh_token,
           }).unwrap();
           dispatch(setToken(accessToken));
         }, 4.5 * 60 * 1000);
