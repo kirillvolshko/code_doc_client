@@ -4,12 +4,17 @@ import "./globals.css";
 import { Provider } from "react-redux";
 import { AuthProvider } from "./providers/AuthProvider";
 import { store } from "@/store";
+import { usePathname } from "next/navigation";
+import { Toaster } from "@/components/ui/sonner";
+import { Header } from "@/components/layout/Header";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAuthPage = pathname === "/auth";
   return (
     <html lang="en">
       <head>
@@ -19,7 +24,11 @@ export default function RootLayout({
 
       <body>
         <Provider store={store}>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            {!isAuthPage && <Header />}
+            {children}
+            <Toaster />
+          </AuthProvider>
         </Provider>
       </body>
     </html>

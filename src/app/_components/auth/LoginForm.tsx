@@ -10,6 +10,7 @@ import { useLoginMutation } from "@/store/auth/authService";
 import { useDispatch } from "react-redux";
 import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { useErrorHandler } from "@/hooks/useErrorHandler";
 
 type FormValues = z.infer<typeof LoginShema>;
 export const LoginForm = () => {
@@ -20,18 +21,15 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [login] = useLoginMutation();
+  const [login, { error }] = useLoginMutation();
+  useErrorHandler(error);
   const handleOnSubmit = async (data: FormValues) => {
-    try {
-      const { accessToken, refreshToken, id } = await login(data).unwrap();
-      dispatch(setToken(accessToken));
-      dispatch(setRefreshToken(refreshToken));
-      dispatch(setUserId(id));
-      form.reset();
-      router.push("/home");
-    } catch (error) {
-      console.log(error);
-    }
+    const { accessToken, refreshToken, id } = await login(data).unwrap();
+    dispatch(setToken(accessToken));
+    dispatch(setRefreshToken(refreshToken));
+    dispatch(setUserId(id));
+    form.reset();
+    router.push("/home");
   };
   return (
     <div>

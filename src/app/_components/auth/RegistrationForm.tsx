@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
 import { useRouter } from "next/navigation";
 
+import { useErrorHandler } from "@/hooks/useErrorHandler";
+
 type FormValues = z.infer<typeof RegistratinShema>;
 export const RegistrationForm = () => {
   const form = useForm<FormValues>({
@@ -19,20 +21,18 @@ export const RegistrationForm = () => {
   });
   const dispatch = useDispatch();
   const router = useRouter();
-  const [registration] = useRegistrationMutation();
+  const [registration, { error }] = useRegistrationMutation();
+  useErrorHandler(error);
+
   const handleOnSubmit = async (data: FormValues) => {
-    try {
-      const { refreshToken, accessToken, id } = await registration(
-        data
-      ).unwrap();
-      dispatch(setToken(accessToken));
-      dispatch(setRefreshToken(refreshToken));
-      dispatch(setUserId(id));
-      form.reset();
-      router.push("/home");
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await registration(data).unwrap();
+
+    dispatch(setToken(response.accessToken));
+    dispatch(setRefreshToken(response.refreshToken));
+    dispatch(setUserId(response.id));
+
+    form.reset();
+    router.push("/home");
   };
   return (
     <div>
