@@ -1,29 +1,35 @@
 "use client";
 import { RootState } from "@/store";
-import { useRefreshMutation } from "@/store/auth/authService";
+import { useRefreshQuery } from "@/store/auth/authService";
 import { setToken } from "@/store/auth/authSlice";
+import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
-  const { access_token, refresh_token } = useSelector(
-    (state: RootState) => state.auth
-  );
-  const [refresh] = useRefreshMutation();
-
+  const { access_token } = useSelector((state: RootState) => state.auth);
+  const { data, refetch } = useRefreshQuery({});
+  const router = useRouter();
   useEffect(() => {
     if (access_token) {
-      const refreshToken = async () => {
-        setInterval(async () => {
-          const { accessToken } = await refresh({
-            refreshToken: refresh_token,
-          }).unwrap();
-          dispatch(setToken(accessToken));
-        }, 4.5 * 60 * 1000);
-      };
-      refreshToken();
+      if (data?.accessToken) {
+        dispatch(setToken(data.accessToken));
+        router.push("/home");
+      }
+    } else {
+      router.push("/auth");
     }
-  }, [access_token, dispatch, refresh, refresh_token]);
+  }, [data, dispatch, router, access_token]);
+
+  useEffect(() => {
+    if (!access_token) return;
+
+    const refreshInterval = setInterval(() => {
+      refetch();
+    }, 29.5 * 60 * 1000);
+
+    return () => clearInterval(refreshInterval);
+  }, [access_token, refetch]);
   return <>{children}</>;
 };

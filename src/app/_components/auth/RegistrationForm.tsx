@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useRegistrationMutation } from "@/store/auth/authService";
 import { useDispatch } from "react-redux";
 import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 type FormValues = z.infer<typeof RegistratinShema>;
 export const RegistrationForm = () => {
@@ -17,8 +18,8 @@ export const RegistrationForm = () => {
     defaultValues: { name: "", email: "", password: "" },
   });
   const dispatch = useDispatch();
+  const router = useRouter();
   const [registration] = useRegistrationMutation();
-  console.log();
   const handleOnSubmit = async (data: FormValues) => {
     try {
       const { refreshToken, accessToken, id } = await registration(
@@ -28,6 +29,7 @@ export const RegistrationForm = () => {
       dispatch(setRefreshToken(refreshToken));
       dispatch(setUserId(id));
       form.reset();
+      router.push("/home");
     } catch (error) {
       console.log(error);
     }

@@ -6,7 +6,7 @@ import { RegistrationForm } from "../_components/auth/RegistrationForm";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export const AuthPage = () => {
+const AuthPage = () => {
   const [isRegistering, setIsRegistering] = useState(false);
 
   return (
@@ -42,3 +42,4 @@ export const AuthPage = () => {
     </div>
   );
 };
+export default AuthPage;
