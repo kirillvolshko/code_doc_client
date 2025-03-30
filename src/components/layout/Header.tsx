@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogoutButton } from "../common/LogoutButton";
+import { LogoutButton } from "../common/ui/LogoutButton";
 
 export const Header = () => {
   return (

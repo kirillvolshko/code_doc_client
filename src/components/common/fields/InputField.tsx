@@ -6,9 +6,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
+} from "../../ui/form";
 import { cn } from "@/lib/utils";
-import { Input } from "../ui/input";
+import { Input } from "../../ui/input";
 
 interface InputFieldProps<T extends FieldValues> {
   control: Control<T>;

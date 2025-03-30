@@ -1,5 +1,6 @@
+"use client";
 import { useLogoutMutation } from "@/store/auth/authService";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { removeToken } from "@/store/auth/authSlice";

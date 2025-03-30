@@ -1,5 +1,5 @@
 "use client";
-import InputField from "@/components/common/InputField";
+import InputField from "@/components/common/fields/InputField";
 import { Form } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";

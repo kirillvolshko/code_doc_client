@@ -4,7 +4,7 @@ import { LoginShema } from "./forms.config";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
-import InputField from "@/components/common/InputField";
+import InputField from "@/components/common/fields/InputField";
 import { Button } from "@/components/ui/button";
 import { useLoginMutation } from "@/store/auth/authService";
 import { useDispatch } from "react-redux";
