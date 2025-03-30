@@ -29,9 +29,19 @@ export const authService = BaseQueryParams("authUser", [
         method: "GET",
         credentials: "include",
       }),
-
+    }),
+    logout: builder.mutation({
+      query: () => ({
+        url: "/logout",
+        method: "POST",
+        credentials: "include",
+      }),
     }),
   }),
 });
-export const { useRegistrationMutation, useLoginMutation, useRefreshQuery } =
-  authService;
+export const {
+  useRegistrationMutation,
+  useLoginMutation,
+  useRefreshQuery,
+  useLogoutMutation,
+} = authService;

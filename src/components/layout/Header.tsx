@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { LogoutButton } from "../common/LogoutButton";
 
 export const Header = () => {
   return (
@@ -9,7 +9,7 @@ export const Header = () => {
           <span className="text-white">Code</span>Doc
         </p>
       </Link>
-      <Button>Log out</Button>
+      <LogoutButton />
     </header>
   );
 };

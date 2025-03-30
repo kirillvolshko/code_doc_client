@@ -31,6 +31,7 @@ export const authSlice = createSlice({
       state.access_token = "";
       state.refresh_token = "";
       state.user_id = "";
+      localStorage.removeItem("persist:root");
     },
   },
 });
