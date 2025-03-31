@@ -1,7 +1,7 @@
 "use client";
 import { RootState } from "@/store";
 import { useRefreshQuery } from "@/store/auth/authService";
-import { setToken } from "@/store/auth/authSlice";
+import { setToken, setUserId } from "@/store/auth/authSlice";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (access_token) {
       if (data?.accessToken) {
         dispatch(setToken(data.accessToken));
+        dispatch(setUserId(data.id));
         router.push("/home");
       }
     } else {

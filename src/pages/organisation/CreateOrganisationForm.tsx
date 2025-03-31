@@ -6,6 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import InputField from "@/components/common/fields/InputField";
 import { Button } from "@/components/ui/button";
+import { useCreateOrganisationMutation } from "@/store/organisation/organisationService";
+import { useErrorHandler } from "@/hooks/useErrorHandler";
+import { useUserId } from "@/hooks/useUserId";
 
 type FormValues = z.infer<typeof CreateOrganisationSchema>;
 export const CreateOrganisationForm = ({
@@ -17,8 +20,15 @@ export const CreateOrganisationForm = ({
     resolver: zodResolver(CreateOrganisationSchema),
     defaultValues: { name: "" },
   });
-  const handleOnSubmit = async () => {
-    console.log("ok");
+  const userId = useUserId();
+  console.log(userId);
+  const [createOrg, { error }] = useCreateOrganisationMutation();
+  useErrorHandler(error);
+  const handleOnSubmit = async (data: FormValues) => {
+    await createOrg({
+      name: data.name,
+      creator_id: userId,
+    }).unwrap();
     if (onClose) onClose(true);
   };
   return (
