@@ -1,5 +1,6 @@
 import { ActionButton } from "@/components/common/ui/ActionButton";
 import { DialogWindow } from "@/components/common/ui/DialogWindow";
+import { CreateOrganisationForm } from "@/pages/organisation/CreateOrganisationForm";
 
 import { Plus } from "lucide-react";
 
@@ -13,6 +14,7 @@ const HomePage = () => {
             triggerComponent={
               <ActionButton icon={<Plus />} title="Create organisation" />
             }
+            content={<CreateOrganisationForm />}
           />
         </div>
       </div>

@@ -1,36 +1,33 @@
 "use client";
-import InputField from "@/components/common/fields/InputField";
-import { Form } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { RegistratinShema } from "./forms.config";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Form } from "@/components/ui/form";
+import InputField from "@/components/common/fields/InputField";
 import { Button } from "@/components/ui/button";
-import { useRegistrationMutation } from "@/store/auth/authService";
+import { useLoginMutation } from "@/store/auth/authService";
 import { useDispatch } from "react-redux";
 import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
 import { useRouter } from "next/navigation";
-
 import { useErrorHandler } from "@/hooks/useErrorHandler";
+import { LoginSchema } from "./forms.scheme";
 
-type FormValues = z.infer<typeof RegistratinShema>;
-export const RegistrationForm = () => {
+type FormValues = z.infer<typeof LoginSchema>;
+export const LoginForm = () => {
   const form = useForm<FormValues>({
-    resolver: zodResolver(RegistratinShema),
-    defaultValues: { name: "", email: "", password: "" },
+    resolver: zodResolver(LoginSchema),
+    defaultValues: { email: "", password: "" },
   });
   const dispatch = useDispatch();
   const router = useRouter();
-  const [registration, { error }] = useRegistrationMutation();
+
+  const [login, { error }] = useLoginMutation();
   useErrorHandler(error);
-
   const handleOnSubmit = async (data: FormValues) => {
-    const response = await registration(data).unwrap();
-
-    dispatch(setToken(response.accessToken));
-    dispatch(setRefreshToken(response.refreshToken));
-    dispatch(setUserId(response.id));
-
+    const { accessToken, refreshToken, id } = await login(data).unwrap();
+    dispatch(setToken(accessToken));
+    dispatch(setRefreshToken(refreshToken));
+    dispatch(setUserId(id));
     form.reset();
     router.push("/home");
   };
@@ -54,13 +51,7 @@ export const RegistrationForm = () => {
             type="password"
             placeholder="Enter your password"
           />
-          <InputField
-            control={form.control}
-            name="name"
-            label="User name"
-            placeholder="Enter your name"
-          />
-          <Button type="submit">Registration</Button>
+          <Button type="submit">Login</Button>
         </form>
       </Form>
     </div>

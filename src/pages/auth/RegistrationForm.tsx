@@ -1,33 +1,37 @@
 "use client";
-import { z } from "zod";
-import { LoginShema } from "./forms.config";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
 import InputField from "@/components/common/fields/InputField";
+import { Form } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { useLoginMutation } from "@/store/auth/authService";
+import { useRegistrationMutation } from "@/store/auth/authService";
 import { useDispatch } from "react-redux";
 import { setRefreshToken, setToken, setUserId } from "@/store/auth/authSlice";
 import { useRouter } from "next/navigation";
-import { useErrorHandler } from "@/hooks/useErrorHandler";
 
-type FormValues = z.infer<typeof LoginShema>;
-export const LoginForm = () => {
+import { useErrorHandler } from "@/hooks/useErrorHandler";
+import { RegistratinSchema } from "./forms.scheme";
+
+type FormValues = z.infer<typeof RegistratinSchema>;
+export const RegistrationForm = () => {
   const form = useForm<FormValues>({
-    resolver: zodResolver(LoginShema),
-    defaultValues: { email: "", password: "" },
+    resolver: zodResolver(RegistratinSchema),
+    defaultValues: { name: "", email: "", password: "" },
   });
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const [login, { error }] = useLoginMutation();
+  const [registration, { error }] = useRegistrationMutation();
   useErrorHandler(error);
+
   const handleOnSubmit = async (data: FormValues) => {
-    const { accessToken, refreshToken, id } = await login(data).unwrap();
-    dispatch(setToken(accessToken));
-    dispatch(setRefreshToken(refreshToken));
-    dispatch(setUserId(id));
+    const response = await registration(data).unwrap();
+
+    dispatch(setToken(response.accessToken));
+    dispatch(setRefreshToken(response.refreshToken));
+    dispatch(setUserId(response.id));
+
     form.reset();
     router.push("/home");
   };
@@ -51,7 +55,13 @@ export const LoginForm = () => {
             type="password"
             placeholder="Enter your password"
           />
-          <Button type="submit">Login</Button>
+          <InputField
+            control={form.control}
+            name="name"
+            label="User name"
+            placeholder="Enter your name"
+          />
+          <Button type="submit">Registration</Button>
         </form>
       </Form>
     </div>

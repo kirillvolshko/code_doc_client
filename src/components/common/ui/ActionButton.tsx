@@ -7,7 +7,7 @@ type ActionButtonProps = {
 
 export const ActionButton = ({ icon, title }: ActionButtonProps) => {
   return (
-    <span className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-md">
+    <span className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 rounded-md cursor-pointer">
       <div>{icon && icon}</div>
       {title && title}
     </span>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ReactNode, ReactElement } from "react";
+import React, { useState, ReactElement } from "react";
 import {
   Dialog,
   DialogClose,
@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 
 interface DialogWindowProps {
   triggerComponent?: ReactElement<{ onClick?: () => void }>;
-  children?: ReactNode;
   content?: ReactElement<{ onClose?: () => void }>;
   fullView?: boolean;
   className?: string;
@@ -22,7 +21,7 @@ interface DialogWindowProps {
 export const DialogWindow = ({
   content,
   fullView,
-  children,
+
   triggerComponent,
   className,
 }: DialogWindowProps) => {
@@ -43,12 +42,11 @@ export const DialogWindow = ({
 
       <DialogContent
         className={cn(
-          "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg p-[20px] md:p-[30px] overflow-y-auto max-h-[80vh]",
+          "bg-black/10 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg p-[20px] md:p-[30px] overflow-y-auto max-h-[80vh]",
           fullView && "p-0 border-none",
           className
         )}
       >
-        {children}
         {content &&
           React.cloneElement(content, {
             onClose: () => setOpen(false),

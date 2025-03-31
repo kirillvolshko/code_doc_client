@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-export const LoginShema = z.object({
+export const LoginSchema = z.object({
   email: z.string(),
   password: z.string(),
 });
-export const RegistratinShema = z.object({
+export const RegistratinSchema = z.object({
   email: z.string(),
   password: z.string(),
   name: z.string(),
