@@ -4,6 +4,7 @@ import { authService } from "./auth/authService";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import authReducer from "./auth/authSlice";
+import { organisationSerivce } from "./organisation/organisationService";
 
 const persistConfig = {
   key: "root",
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   [authService.reducerPath]: authService.reducer,
+  [organisationSerivce.reducerPath]: organisationSerivce.reducer,
   auth: authReducer,
 });
 
@@ -27,7 +29,10 @@ const makeStore = () => {
         serializableCheck: {
           ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
         },
-      }).concat(authService.middleware as Middleware),
+      }).concat(
+        authService.middleware as Middleware,
+        organisationSerivce.middleware as Middleware
+      ),
   });
 };
 
