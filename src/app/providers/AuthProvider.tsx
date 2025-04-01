@@ -11,11 +11,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { access_token } = useSelector((state: RootState) => state.auth);
   const { data, refetch } = useRefreshQuery({});
   const router = useRouter();
+  console.log(data);
   useEffect(() => {
     if (access_token) {
       if (data?.accessToken) {
         dispatch(setToken(data.accessToken));
-        dispatch(setUserId(data.id));
+        dispatch(setUserId(data.user.id));
         router.push("/home");
       }
     } else {

@@ -24,10 +24,10 @@ export const LoginForm = () => {
   const [login, { error }] = useLoginMutation();
   useErrorHandler(error);
   const handleOnSubmit = async (data: FormValues) => {
-    const { accessToken, refreshToken, id } = await login(data).unwrap();
+    const { accessToken, refreshToken, user } = await login(data).unwrap();
     dispatch(setToken(accessToken));
     dispatch(setRefreshToken(refreshToken));
-    dispatch(setUserId(id));
+    dispatch(setUserId(user.id));
     form.reset();
     router.push("/home");
   };
