@@ -5,12 +5,13 @@ export const organisationSerivce = BaseQueryParams("organisation", [
   "ORG",
 ]).injectEndpoints({
   endpoints: (builder) => ({
-    getOrganisation: builder.query<IOrganisationResponse, string>({
-      query: (id) => ({
-        url: `/organisation-user/${id}`,
+    getOrganisation: builder.query<IOrganisationResponse[], string | null>({
+      query: (userId) => ({
+        url: `/organisation-user/${userId}`,
         method: "GET",
       }),
     }),
+
     createOrganisation: builder.mutation({
       query: (body) => ({
         url: "/organisation",
