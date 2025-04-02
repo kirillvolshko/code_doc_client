@@ -1,7 +1,7 @@
 import { ActionButton } from "@/components/common/ui/ActionButton";
 import { DialogWindow } from "@/components/common/ui/DialogWindow";
-import { CreateOrganisationForm } from "@/pages/organisation/CreateOrganisationForm";
-import { OrganisationList } from "@/pages/organisation/OrganisationList";
+import { CreateOrganisationForm } from "@/pages/home/CreateOrganisationForm";
+import { OrganisationList } from "@/pages/home/OrganisationList";
 
 import { Plus } from "lucide-react";
 
