@@ -5,7 +5,7 @@ export const documentService = BaseQueryParams("document", [
   "DOC",
 ]).injectEndpoints({
   endpoints: (builder) => ({
-    getDocuments: builder.query<unknown, string>({
+    getDocuments: builder.query<IDocumentResponse[], string | null>({
       query: (orgId) => ({
         url: `/documents-code/${orgId}`,
         method: "GET",
@@ -21,3 +21,5 @@ export const documentService = BaseQueryParams("document", [
     }),
   }),
 });
+export const { useCreateDocumentMutation, useGetDocumentsQuery } =
+  documentService;

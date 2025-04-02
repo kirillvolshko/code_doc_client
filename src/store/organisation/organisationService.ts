@@ -1,7 +1,7 @@
 import { IOrganisationResponse } from "@/types/organisation";
 import { BaseQueryParams } from "../baseQuery";
 
-export const organisationSerivce = BaseQueryParams("organisation", [
+export const organisationService = BaseQueryParams("organisation", [
   "ORG",
 ]).injectEndpoints({
   endpoints: (builder) => ({
@@ -22,4 +22,4 @@ export const organisationSerivce = BaseQueryParams("organisation", [
   }),
 });
 export const { useCreateOrganisationMutation, useGetOrganisationQuery } =
-  organisationSerivce;
+  organisationService;
