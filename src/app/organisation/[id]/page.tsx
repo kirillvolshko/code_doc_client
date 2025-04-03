@@ -19,9 +19,7 @@ const OrganisationPage = () => {
       <SideBar data={data ?? []} />
       <div className="w-full">
         <Header />
-        <div>
-          <DocumentView />
-        </div>
+        <DocumentView />
       </div>
     </SidebarProvider>
   );
