@@ -1,4 +1,5 @@
 "use client";
+import { Header } from "@/components/layout/Header";
 import { SideBar } from "@/components/layout/SideBar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { useGetDocumentsQuery } from "@/store/documents/documentService";
@@ -10,7 +11,10 @@ const OrganisationPage = () => {
   return (
     <SidebarProvider>
       <SideBar data={data ?? []} />
-      <div>Org Page</div>
+      <div className="w-full">
+        <Header />
+        <div>Org Page</div>
+      </div>
     </SidebarProvider>
   );
 };

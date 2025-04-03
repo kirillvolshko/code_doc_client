@@ -10,6 +10,9 @@ import {
   useSidebar,
 } from "../ui/sidebar";
 import { IDocumentResponse } from "@/types/document";
+import { FileX2, Plus } from "lucide-react";
+import { ActionButton } from "../common/ui/ActionButton";
+import { DialogWindow } from "../common/ui/DialogWindow";
 
 type SideBarProps = {
   data: IDocumentResponse[];
@@ -21,8 +24,13 @@ export const SideBar = ({ data }: SideBarProps) => {
     <Sidebar collapsible="icon">
       <SidebarHeader className={cn(open ? "flex items-end" : "")}>
         <SidebarTrigger />
+        <DialogWindow
+          triggerComponent={
+            <ActionButton icon={<Plus />} title="Add new document" />
+          }
+        />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="p-2">
         {data && data.length > 0 ? (
           data.map((item) => (
             <SidebarMenu key={item.org_id}>
@@ -35,7 +43,10 @@ export const SideBar = ({ data }: SideBarProps) => {
           ))
         ) : (
           <SidebarMenu>
-            <SidebarMenuButton>Organiastion dont have docs</SidebarMenuButton>
+            <SidebarMenuButton>
+              <FileX2 />
+              <span>Organiastion dont have docs</span>
+            </SidebarMenuButton>
           </SidebarMenu>
         )}
       </SidebarContent>
