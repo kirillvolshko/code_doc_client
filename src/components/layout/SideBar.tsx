@@ -26,7 +26,11 @@ export const SideBar = ({ data }: SideBarProps) => {
         <SidebarTrigger />
         <DialogWindow
           triggerComponent={
-            <ActionButton icon={<Plus />} title="Add new document" />
+            <ActionButton
+              icon={<Plus />}
+              title="Add new document"
+              className={cn(open ? "w-full" : "icon-only w-7 h-7 p-1")}
+            />
           }
         />
       </SidebarHeader>
