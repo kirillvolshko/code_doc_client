@@ -1,5 +1,24 @@
+export interface IDocumentsResponse {
+  id: string;
+  title: string;
+}
 export interface IDocumentResponse {
   id: string;
+  content: string;
+  created_at: string;
+  creator: { id: string; name: string };
+  org_id: string;
+  title: string;
+  updated_at: string | null;
+  updated_id: string | null;
+}
+export interface IDocumentRequestCreate {
+  title: string;
+  content: string;
+  creator_id: string;
+  org_id: string;
+}
+export interface IDocumentRequestEdit {
   title: string;
   content: string;
   creator_id: string;

@@ -1,25 +1,41 @@
-import { IDocumentResponse } from "@/types/document";
+import {
+  IDocumentRequestCreate,
+  IDocumentResponse,
+  IDocumentsResponse,
+} from "@/types/document";
 import { BaseQueryParams } from "../baseQuery";
 
 export const documentService = BaseQueryParams("document", [
-  "DOC",
+  "DOCUMENTS",
+  "DOCUMENT",
 ]).injectEndpoints({
   endpoints: (builder) => ({
-    getDocuments: builder.query<IDocumentResponse[], string | null>({
+    getDocuments: builder.query<IDocumentsResponse[], string | null>({
       query: (orgId) => ({
         url: `/documents-code/${orgId}`,
         method: "GET",
       }),
-      providesTags: ["DOC"],
+      providesTags: () => ["DOCUMENTS"],
     }),
-    createDocument: builder.mutation<unknown, IDocumentResponse>({
+    getDocumentById: builder.query<IDocumentResponse, string | null>({
+      query: (docId) => ({
+        url: `/document-code/${docId}`,
+        method: "GET",
+      }),
+      providesTags: () => ["DOCUMENT"],
+    }),
+    createDocument: builder.mutation<unknown, IDocumentRequestCreate>({
       query: (body) => ({
         url: "/documents-code/",
         method: "POST",
         body,
       }),
+      invalidatesTags: ["DOCUMENTS"],
     }),
   }),
 });
-export const { useCreateDocumentMutation, useGetDocumentsQuery } =
-  documentService;
+export const {
+  useCreateDocumentMutation,
+  useGetDocumentsQuery,
+  useGetDocumentByIdQuery,
+} = documentService;

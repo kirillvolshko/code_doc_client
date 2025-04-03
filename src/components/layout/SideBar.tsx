@@ -9,50 +9,60 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "../ui/sidebar";
-import { IDocumentResponse } from "@/types/document";
-import { FileX2, Plus } from "lucide-react";
+import { IDocumentsResponse } from "@/types/document";
+import { FileX2, Plus, File } from "lucide-react";
 import { ActionButton } from "../common/ui/ActionButton";
 import { DialogWindow } from "../common/ui/DialogWindow";
+import { CreateDocumentForm } from "@/pages/organisation/forms/CreateDocumentForm";
+import { useRouter } from "next/navigation";
 
 type SideBarProps = {
-  data: IDocumentResponse[];
+  data: IDocumentsResponse[];
 };
 
 export const SideBar = ({ data }: SideBarProps) => {
-  const { open } = useSidebar();
+  const { open: openSideBar } = useSidebar();
+  const router = useRouter();
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className={cn(open ? "flex items-end" : "")}>
+      <SidebarHeader className={cn(openSideBar ? "flex items-end" : "")}>
         <SidebarTrigger />
+
         <DialogWindow
           triggerComponent={
             <ActionButton
               icon={<Plus />}
               title="Add new document"
-              className={cn(open ? "w-full" : "icon-only w-7 h-7 p-1")}
+              className={cn(openSideBar ? "w-full" : "icon-only w-7 h-7 p-1")}
             />
           }
+          classNameTrigger={cn(openSideBar ? "w-full" : "")}
+          content={<CreateDocumentForm />}
         />
       </SidebarHeader>
       <SidebarContent className="p-2">
-        {data && data.length > 0 ? (
-          data.map((item) => (
-            <SidebarMenu key={item.org_id}>
-              <SidebarMenuButton tooltip={item.title} className="">
-                <div className="flex items-center gap-3">
-                  <span>{item.title}</span>
-                </div>
+        <SidebarMenu>
+          {data && data.length > 0 ? (
+            data.map((item) => (
+              <SidebarMenuButton
+                tooltip={item.title}
+                className=""
+                key={item.id}
+                onClick={() =>
+                  router.push(`?doc=${item.id}`, { scroll: false })
+                }
+              >
+                <File />
+                <span>{item.title}</span>
               </SidebarMenuButton>
-            </SidebarMenu>
-          ))
-        ) : (
-          <SidebarMenu>
+            ))
+          ) : (
             <SidebarMenuButton>
               <FileX2 />
               <span>Organiastion dont have docs</span>
             </SidebarMenuButton>
-          </SidebarMenu>
-        )}
+          )}
+        </SidebarMenu>
       </SidebarContent>
     </Sidebar>
   );

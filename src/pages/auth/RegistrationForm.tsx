@@ -30,7 +30,7 @@ export const RegistrationForm = () => {
 
     dispatch(setToken(response.accessToken));
     dispatch(setRefreshToken(response.refreshToken));
-    dispatch(setUserId(response.id));
+    dispatch(setUserId(response.user.id));
 
     form.reset();
     router.push("/home");

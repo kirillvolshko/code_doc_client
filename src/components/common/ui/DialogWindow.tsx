@@ -4,10 +4,11 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { DialogDescription } from "@radix-ui/react-dialog";
+
 import { cn } from "@/lib/utils";
 
 interface DialogWindowProps {
@@ -15,6 +16,7 @@ interface DialogWindowProps {
   content?: ReactElement<{ onClose?: () => void }>;
   fullView?: boolean;
   className?: string;
+  classNameTrigger?: string;
   hideCloseButton?: boolean;
 }
 
@@ -24,16 +26,19 @@ export const DialogWindow = ({
 
   triggerComponent,
   className,
+  classNameTrigger,
 }: DialogWindowProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen} modal={true}>
       <DialogTrigger asChild>
-        {triggerComponent &&
-          React.cloneElement(triggerComponent, {
-            onClick: () => setOpen((prev) => !prev),
-          })}
+        <div
+          onClick={() => setOpen((prev) => !prev)}
+          className={cn(classNameTrigger)}
+        >
+          {triggerComponent}
+        </div>
       </DialogTrigger>
 
       <DialogTitle className="invisible"></DialogTitle>

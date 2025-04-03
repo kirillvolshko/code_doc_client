@@ -30,6 +30,7 @@ export const CreateOrganisationForm = ({
       creator_id: userId,
     }).unwrap();
     if (onClose) onClose(true);
+    form.reset();
   };
   return (
     <div>

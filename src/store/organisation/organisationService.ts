@@ -10,6 +10,7 @@ export const organisationService = BaseQueryParams("organisation", [
         url: `/organisation-user/${userId}`,
         method: "GET",
       }),
+      providesTags: () => ["ORG"],
     }),
 
     createOrganisation: builder.mutation({
@@ -18,6 +19,7 @@ export const organisationService = BaseQueryParams("organisation", [
         method: "POST",
         body,
       }),
+      invalidatesTags: ["ORG"],
     }),
   }),
 });
