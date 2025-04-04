@@ -10,7 +10,7 @@ export interface IDocumentResponse {
   org_id: string;
   title: string;
   updated_at: string | null;
-  updated_id: string | null;
+  editor: { id: string; name: string } | null;
 }
 export interface IDocumentRequestCreate {
   title: string;

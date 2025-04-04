@@ -7,7 +7,7 @@ export const DocumentFooter = ({
   editor,
   date,
 }: {
-  editor: string | null;
+  editor: string | undefined;
   date: string | null;
 }) => {
   return (

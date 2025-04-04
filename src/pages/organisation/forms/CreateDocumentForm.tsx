@@ -1,6 +1,6 @@
 "use client";
 import InputField from "@/components/common/fields/InputField";
-import { CreateDocumentSchema } from "./forms.schema";
+import { DocumentSchema } from "./forms.schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateDocumentMutation } from "@/store/documents/documentService";
@@ -12,14 +12,14 @@ import { useParams } from "next/navigation";
 import TextareaField from "@/components/common/fields/TextAreaField";
 import { Form } from "@/components/ui/form";
 
-type FormValues = z.infer<typeof CreateDocumentSchema>;
+type FormValues = z.infer<typeof DocumentSchema>;
 export const CreateDocumentForm = ({
   onClose,
 }: {
   onClose?: (value: boolean) => void;
 }) => {
   const form = useForm<FormValues>({
-    resolver: zodResolver(CreateDocumentSchema),
+    resolver: zodResolver(DocumentSchema),
     defaultValues: {
       title: "",
       content: "",
