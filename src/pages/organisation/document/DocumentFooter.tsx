@@ -2,13 +2,18 @@ import { ActionButton } from "@/components/common/ui/ActionButton";
 import { DialogWindow } from "@/components/common/ui/DialogWindow";
 import { parsedDate } from "@/utils/parsedDate";
 import { Clock, Pencil, User } from "lucide-react";
+import { EditDocumentForm } from "../forms/EditDocumentForm";
 
 export const DocumentFooter = ({
   editor,
   date,
+  title,
+  content,
 }: {
   editor: string | undefined;
   date: string | null;
+  title: string;
+  content: string;
 }) => {
   return (
     <div className="flex justify-between items-center mt-auto">
@@ -32,6 +37,7 @@ export const DocumentFooter = ({
         triggerComponent={
           <ActionButton icon={<Pencil />} title="Edit document" />
         }
+        content={<EditDocumentForm title={title} content={content} />}
       />
     </div>
   );

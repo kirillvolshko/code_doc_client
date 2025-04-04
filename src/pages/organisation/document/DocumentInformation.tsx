@@ -13,7 +13,12 @@ export const DocumentInformation = ({ data }: DocumentContent) => {
         <DocumentHeader creator={data.creator.name} date={data.created_at} />
         <DocumentContent title={data.title} content={data.content} />
       </div>
-      <DocumentFooter editor={data.editor?.name} date={data.updated_at} />
+      <DocumentFooter
+        editor={data.editor?.name}
+        date={data.updated_at}
+        title={data.title}
+        content={data.content}
+      />
     </div>
   );
 };

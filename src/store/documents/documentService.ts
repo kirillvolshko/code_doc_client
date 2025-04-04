@@ -42,6 +42,7 @@ export const documentService = BaseQueryParams("document", [
         method: "PATCH",
         body,
       }),
+      invalidatesTags: ["DOCUMENT"],
     }),
   }),
 });
