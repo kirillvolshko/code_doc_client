@@ -21,6 +21,5 @@ export interface IDocumentRequestCreate {
 export interface IDocumentRequestEdit {
   title: string;
   content: string;
-  creator_id: string;
-  org_id: string;
+  updated_id: string;
 }

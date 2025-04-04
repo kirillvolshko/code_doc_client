@@ -1,5 +1,6 @@
 import {
   IDocumentRequestCreate,
+  IDocumentRequestEdit,
   IDocumentResponse,
   IDocumentsResponse,
 } from "@/types/document";
@@ -32,10 +33,21 @@ export const documentService = BaseQueryParams("document", [
       }),
       invalidatesTags: ["DOCUMENTS"],
     }),
+    editDocument: builder.mutation<
+      unknown,
+      { body: IDocumentRequestEdit; docId: string }
+    >({
+      query: ({ body, docId }) => ({
+        url: `/document-code/${docId}`,
+        method: "PATCH",
+        body,
+      }),
+    }),
   }),
 });
 export const {
   useCreateDocumentMutation,
   useGetDocumentsQuery,
+  useEditDocumentMutation,
   useGetDocumentByIdQuery,
 } = documentService;
