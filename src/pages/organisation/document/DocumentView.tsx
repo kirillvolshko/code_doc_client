@@ -5,6 +5,7 @@ import { useGetDocumentByIdQuery } from "@/store/documents/documentService";
 import { NoDataMessage } from "@/components/common/ui/NoDataMessage";
 import { Send } from "lucide-react";
 import { Spinner } from "@/components/common/ui/Spinner";
+import { DocumentInformation } from "./DocumentInformation";
 
 export const DocumentView = () => {
   const searchParams = useSearchParams();
@@ -19,10 +20,14 @@ export const DocumentView = () => {
     return (
       <NoDataMessage
         icon={<Send />}
-        title="Select an existing document or create a new one."
+        title="Select an existing code document or create a new one."
         className="flex flex-col justify-center h-[calc(100vh-97.5px)] items-center"
       />
     );
 
-  return <div className="p-[30px]">{data?.content}</div>;
+  return (
+    <div className="flex flex-row gap-5 p-[30px] max-h-[calc(100vh-97.5px)]">
+      {data && <DocumentInformation data={data} />}
+    </div>
+  );
 };

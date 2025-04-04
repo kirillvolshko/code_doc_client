@@ -49,14 +49,14 @@ export const CreateDocumentForm = ({
       >
         <InputField
           control={form.control}
-          label="Document title"
-          placeholder="Input document title"
+          label="Code file title"
+          placeholder="Input code file title"
           name="title"
         />
         <TextareaField
           control={form.control}
-          label="Document title"
-          placeholder="Input document title"
+          label="Code description"
+          placeholder="Input code description"
           name="content"
         />
         <Button type="submit">Create</Button>
