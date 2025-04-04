@@ -11,6 +11,7 @@ import { z } from "zod";
 import { useParams } from "next/navigation";
 import TextareaField from "@/components/common/fields/TextAreaField";
 import { Form } from "@/components/ui/form";
+import { TextEditor } from "@/components/common/fields/TextEditor";
 
 type FormValues = z.infer<typeof DocumentSchema>;
 export const CreateDocumentForm = ({
@@ -53,7 +54,7 @@ export const CreateDocumentForm = ({
           placeholder="Input code file title"
           name="title"
         />
-        <TextareaField
+        <TextEditor
           control={form.control}
           label="Code description"
           placeholder="Input code description"

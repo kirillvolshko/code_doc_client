@@ -10,6 +10,7 @@ import { useErrorHandler } from "@/hooks/useErrorHandler";
 import { useUserId } from "@/hooks/useUserId";
 import { useSearchParams } from "next/navigation";
 import TextareaField from "@/components/common/fields/TextAreaField";
+import { TextEditor } from "@/components/common/fields/TextEditor";
 
 type FormValues = z.infer<typeof DocumentSchema>;
 export const EditDocumentForm = ({
@@ -57,7 +58,7 @@ export const EditDocumentForm = ({
           label="Code file title"
           placeholder="Input code file title"
         />
-        <TextareaField
+        <TextEditor
           control={form.control}
           label="Code description"
           placeholder="Input code description"

@@ -13,7 +13,7 @@ export const DocumentContent = ({
       </div>
       <div>
         <p className="text-[20px] font-semibold">File description</p>
-        <p>{content}</p>
+        <p dangerouslySetInnerHTML={{ __html: content }} />
       </div>
     </div>
   );

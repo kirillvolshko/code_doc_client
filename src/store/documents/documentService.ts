@@ -27,7 +27,7 @@ export const documentService = BaseQueryParams("document", [
     }),
     createDocument: builder.mutation<unknown, IDocumentRequestCreate>({
       query: (body) => ({
-        url: "/documents-code/",
+        url: "/document-code/",
         method: "POST",
         body,
       }),
