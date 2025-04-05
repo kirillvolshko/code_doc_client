@@ -1,5 +1,5 @@
 import { z } from "zod";
 
-export const CreateOrganisationSchema = z.object({
+export const CreateProjectSchema = z.object({
   name: z.string(),
 });

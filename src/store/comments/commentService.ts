@@ -1,17 +1,18 @@
+import { ICommentRequest, ICommentResponse } from "@/types/comment";
 import { BaseQueryParams } from "../baseQuery";
 
 export const commentService = BaseQueryParams("comments", [
   "COMMENTS",
 ]).injectEndpoints({
   endpoints: (builder) => ({
-    getComments: builder.query({
+    getComments: builder.query<ICommentResponse[], string>({
       query: (docId) => ({
         url: `/comment/${docId}`,
         method: "GET",
       }),
       providesTags: () => ["COMMENTS"],
     }),
-    createComments: builder.mutation({
+    createComments: builder.mutation<unknown, ICommentRequest>({
       query: (body) => ({
         url: "/comment",
         method: "POST",
@@ -19,7 +20,10 @@ export const commentService = BaseQueryParams("comments", [
       }),
       invalidatesTags: ["COMMENTS"],
     }),
-    editComments: builder.mutation({
+    editComments: builder.mutation<
+      unknown,
+      { body: ICommentRequest; id: string }
+    >({
       query: ({ body, id }) => ({
         url: `/comment/${id}`,
         method: "PATCH",
@@ -27,7 +31,7 @@ export const commentService = BaseQueryParams("comments", [
       }),
       invalidatesTags: ["COMMENTS"],
     }),
-    deleteComments: builder.mutation({
+    deleteComments: builder.mutation<unknown, string>({
       query: (id) => ({
         url: `/comment/${id}`,
         method: "DELETE",

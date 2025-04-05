@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { useUserId } from "@/hooks/useUserId";
 import { z } from "zod";
 import { useParams } from "next/navigation";
-import TextareaField from "@/components/common/fields/TextAreaField";
 import { Form } from "@/components/ui/form";
 import { TextEditor } from "@/components/common/fields/TextEditor";
 

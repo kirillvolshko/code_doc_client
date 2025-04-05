@@ -1,7 +1,7 @@
 import { ActionButton } from "@/components/common/ui/ActionButton";
 import { DialogWindow } from "@/components/common/ui/DialogWindow";
-import { CreateOrganisationForm } from "@/pages/home/CreateOrganisationForm";
-import { OrganisationList } from "@/pages/home/OrganisationList";
+import { CreateProjectForm } from "@/pages/home/CreateProjectForm";
+import { ProjectList } from "@/pages/home/ProjectList";
 
 import { Plus } from "lucide-react";
 
@@ -13,14 +13,14 @@ const HomePage = () => {
         <div>
           <DialogWindow
             triggerComponent={
-              <ActionButton icon={<Plus />} title="Create organisation" />
+              <ActionButton icon={<Plus />} title="Create project" />
             }
-            content={<CreateOrganisationForm />}
+            content={<CreateProjectForm />}
           />
         </div>
       </div>
       <div>
-        <OrganisationList />
+        <ProjectList />
       </div>
     </div>
   );

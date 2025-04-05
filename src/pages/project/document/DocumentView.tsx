@@ -27,7 +27,7 @@ export const DocumentView = () => {
     );
 
   return (
-    <div className="flex flex-row gap-5 p-[30px] max-h-[calc(100vh-97.5px)]">
+    <div className="flex flex-row gap-5 p-[30px] max-h-[calc(100vh-157.5px)]">
       {data && <DocumentInformation data={data} />}
       <CommentsView />
     </div>

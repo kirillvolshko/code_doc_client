@@ -16,7 +16,7 @@ export const DocumentFooter = ({
   content: string;
 }) => {
   return (
-    <div className="flex justify-between items-center mt-auto">
+    <div className="flex justify-between items-center w-full mt-auto">
       <div className="flex gap-5">
         {editor && date ? (
           <>
@@ -38,6 +38,7 @@ export const DocumentFooter = ({
           <ActionButton icon={<Pencil />} title="Edit document" />
         }
         content={<EditDocumentForm title={title} content={content} />}
+        classNameTrigger="w-full flex justify-end"
       />
     </div>
   );

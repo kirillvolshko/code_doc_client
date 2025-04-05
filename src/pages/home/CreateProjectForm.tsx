@@ -1,31 +1,32 @@
 "use client";
 import { z } from "zod";
-import { CreateOrganisationSchema } from "./config/form.schema";
+import { CreateProjectSchema } from "./config/form.schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import InputField from "@/components/common/fields/InputField";
 import { Button } from "@/components/ui/button";
-import { useCreateOrganisationMutation } from "@/store/organisation/organisationService";
+import { useCreateProjectMutation } from "@/store/project/projectService";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
 import { useUserId } from "@/hooks/useUserId";
 
-type FormValues = z.infer<typeof CreateOrganisationSchema>;
-export const CreateOrganisationForm = ({
+type FormValues = z.infer<typeof CreateProjectSchema>;
+export const CreateProjectForm = ({
   onClose,
 }: {
   onClose?: (value: boolean) => void;
 }) => {
   const form = useForm<FormValues>({
-    resolver: zodResolver(CreateOrganisationSchema),
+    resolver: zodResolver(CreateProjectSchema),
     defaultValues: { name: "" },
   });
   const userId = useUserId();
   console.log(userId);
-  const [createOrg, { error }] = useCreateOrganisationMutation();
+  const [createProject, { error }] = useCreateProjectMutation();
   useErrorHandler(error);
+
   const handleOnSubmit = async (data: FormValues) => {
-    await createOrg({
+    await createProject({
       name: data.name,
       creator_id: userId,
     }).unwrap();
@@ -42,11 +43,11 @@ export const CreateOrganisationForm = ({
           <InputField
             control={form.control}
             name="name"
-            label="Organisation name"
-            placeholder="Input organisation name"
+            label="Project name"
+            placeholder="Input project name"
             classNameItem="text-black"
           />
-          <Button type="submit">Create</Button>
+          <Button type="submit">Create project</Button>
         </form>
       </Form>
     </div>

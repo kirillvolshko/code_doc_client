@@ -13,7 +13,7 @@ import { IDocumentsResponse } from "@/types/document";
 import { FileX2, Plus, File } from "lucide-react";
 import { ActionButton } from "../common/ui/ActionButton";
 import { DialogWindow } from "../common/ui/DialogWindow";
-import { CreateDocumentForm } from "@/pages/organisation/forms/CreateDocumentForm";
+import { CreateDocumentForm } from "@/pages/project/forms/CreateDocumentForm";
 import { useRouter } from "next/navigation";
 
 type SideBarProps = {

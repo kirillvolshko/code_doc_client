@@ -8,8 +8,8 @@ export type DocumentContent = {
 };
 export const DocumentInformation = ({ data }: DocumentContent) => {
   return (
-    <div className="flex flex-col min-h-[calc(100vh-130.5px)]">
-      <div className="flex-grow flex flex-col gap-10">
+    <div className="flex flex-col min-h-[calc(100vh-165.5px)] flex-1 w-full">
+      <div className="flex flex-col gap-10">
         <DocumentHeader creator={data.creator.name} date={data.created_at} />
         <DocumentContent title={data.title} content={data.content} />
       </div>

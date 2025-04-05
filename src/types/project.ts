@@ -1,4 +1,4 @@
-export interface IOrganisationResponse {
+export interface IProjectResponse {
   id: string;
   name: string;
   creator_id: string;
