@@ -6,6 +6,7 @@ import { NoDataMessage } from "@/components/common/ui/NoDataMessage";
 import { Send } from "lucide-react";
 import { Spinner } from "@/components/common/ui/Spinner";
 import { DocumentInformation } from "./DocumentInformation";
+import { CommentsView } from "../comments/CommentsView";
 
 export const DocumentView = () => {
   const searchParams = useSearchParams();
@@ -28,6 +29,7 @@ export const DocumentView = () => {
   return (
     <div className="flex flex-row gap-5 p-[30px] max-h-[calc(100vh-97.5px)]">
       {data && <DocumentInformation data={data} />}
+      <CommentsView />
     </div>
   );
 };

@@ -9,7 +9,7 @@ import { useEditDocumentMutation } from "@/store/documents/documentService";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
 import { useUserId } from "@/hooks/useUserId";
 import { useSearchParams } from "next/navigation";
-import TextareaField from "@/components/common/fields/TextAreaField";
+
 import { TextEditor } from "@/components/common/fields/TextEditor";
 
 type FormValues = z.infer<typeof DocumentSchema>;
