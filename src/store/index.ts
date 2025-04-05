@@ -6,6 +6,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import authReducer from "./auth/authSlice";
 import { organisationService } from "./organisation/organisationService";
 import { documentService } from "./documents/documentService";
+import { commentService } from "./comments/commentService";
 const persistConfig = {
   key: "root",
   storage,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   [authService.reducerPath]: authService.reducer,
   [organisationService.reducerPath]: organisationService.reducer,
   [documentService.reducerPath]: documentService.reducer,
+  [commentService.reducerPath]: commentService.reducer,
   auth: authReducer,
 });
 
@@ -33,7 +35,8 @@ const makeStore = () => {
       }).concat(
         authService.middleware as Middleware,
         organisationService.middleware as Middleware,
-        documentService.middleware as Middleware
+        documentService.middleware as Middleware,
+        commentService.middleware as Middleware
       ),
   });
 };
