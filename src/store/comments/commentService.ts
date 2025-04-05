@@ -20,14 +20,13 @@ export const commentService = BaseQueryParams("comments", [
       }),
       invalidatesTags: ["COMMENTS"],
     }),
-    editComments: builder.mutation<
-      unknown,
-      { body: ICommentRequest; id: string }
-    >({
-      query: ({ body, id }) => ({
+    editComments: builder.mutation<unknown, { content: string; id: string }>({
+      query: ({ content, id }) => ({
         url: `/comment/${id}`,
         method: "PATCH",
-        body,
+        body: {
+          content,
+        },
       }),
       invalidatesTags: ["COMMENTS"],
     }),
@@ -36,7 +35,7 @@ export const commentService = BaseQueryParams("comments", [
         url: `/comment/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["COMMENS"],
+      invalidatesTags: ["COMMENTS"],
     }),
   }),
 });

@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const isAuthPage = pathname === "/auth";
-  const isOrganisationPage = pathname?.startsWith("/organisation");
+  const isProjectPage = pathname?.startsWith("/project");
   return (
     <html lang="en">
       <head>
@@ -26,7 +26,7 @@ export default function RootLayout({
       <body>
         <Provider store={store}>
           <AuthProvider>
-            {!isAuthPage && !isOrganisationPage && <Header />}
+            {!isAuthPage && !isProjectPage && <Header />}
             {children}
             <Toaster />
           </AuthProvider>

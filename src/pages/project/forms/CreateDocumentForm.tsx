@@ -36,7 +36,7 @@ export const CreateDocumentForm = ({
       title: title,
       content: content,
       creator_id: userId ?? "",
-      org_id: orgId?.id ?? "",
+      project_id: orgId?.id ?? "",
     }).unwrap();
     if (onClose) onClose(true);
     form.reset();
