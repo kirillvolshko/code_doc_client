@@ -18,18 +18,19 @@ import { CreateDocumentForm } from "@/pages/project/forms/CreateDocumentForm";
 import { useRouter } from "next/navigation";
 import { useUserId } from "@/hooks/useUserId";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 type SideBarProps = {
   data: IDocumentsResponse[];
   creator: string;
+  projectId: string;
 };
 
-export const SideBar = ({ data, creator }: SideBarProps) => {
+export const SideBar = ({ data, creator, projectId }: SideBarProps) => {
   const { open: openSideBar } = useSidebar();
   const router = useRouter();
   const userId = useUserId();
-  console.log("user", userId);
-  console.log("creator", creator);
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className={cn(openSideBar ? "flex items-end" : "")}>
@@ -74,9 +75,11 @@ export const SideBar = ({ data, creator }: SideBarProps) => {
 
       {creator.length > 0 && creator === userId && (
         <SidebarFooter>
-          <Button>
-            <Settings /> Setings
-          </Button>
+          <Link href={`/settings?id=${projectId}`} className="w-full">
+            <Button type="submit" className="w-full">
+              <Settings /> Settings
+            </Button>
+          </Link>
         </SidebarFooter>
       )}
     </Sidebar>

@@ -27,7 +27,11 @@ const ProjectPage = () => {
   if (isLoading && loadingProject) return <Spinner />;
   return (
     <SidebarProvider>
-      <SideBar data={data ?? []} creator={project?.creator_id ?? ""} />
+      <SideBar
+        data={data ?? []}
+        creator={project?.creator_id ?? ""}
+        projectId={project?.id ?? ""}
+      />
       <div className="w-full">
         <Header />
         <DocumentView />
