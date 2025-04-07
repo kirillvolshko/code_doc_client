@@ -12,7 +12,12 @@ export const projectService = BaseQueryParams("project", [
       }),
       providesTags: () => ["PROJECT"],
     }),
-
+    getProjectById: builder.query<IProjectResponse[], string>({
+      query: (id) => ({
+        url: `/project/${id}`,
+        method: "GET",
+      }),
+    }),
     createProject: builder.mutation({
       query: (body) => ({
         url: "/project",
@@ -23,4 +28,8 @@ export const projectService = BaseQueryParams("project", [
     }),
   }),
 });
-export const { useCreateProjectMutation, useGetProjectQuery } = projectService;
+export const {
+  useCreateProjectMutation,
+  useGetProjectQuery,
+  useGetProjectByIdQuery,
+} = projectService;

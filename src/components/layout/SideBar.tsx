@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -10,19 +11,25 @@ import {
   useSidebar,
 } from "../ui/sidebar";
 import { IDocumentsResponse } from "@/types/document";
-import { FileX2, Plus, File } from "lucide-react";
+import { FileX2, Plus, File, Settings } from "lucide-react";
 import { ActionButton } from "../common/ui/ActionButton";
 import { DialogWindow } from "../common/ui/DialogWindow";
 import { CreateDocumentForm } from "@/pages/project/forms/CreateDocumentForm";
 import { useRouter } from "next/navigation";
+import { useUserId } from "@/hooks/useUserId";
+import { Button } from "../ui/button";
 
 type SideBarProps = {
   data: IDocumentsResponse[];
+  creator: string;
 };
 
-export const SideBar = ({ data }: SideBarProps) => {
+export const SideBar = ({ data, creator }: SideBarProps) => {
   const { open: openSideBar } = useSidebar();
   const router = useRouter();
+  const userId = useUserId();
+  console.log("user", userId);
+  console.log("creator", creator);
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className={cn(openSideBar ? "flex items-end" : "")}>
@@ -64,6 +71,14 @@ export const SideBar = ({ data }: SideBarProps) => {
           )}
         </SidebarMenu>
       </SidebarContent>
+
+      {creator.length > 0 && creator === userId && (
+        <SidebarFooter>
+          <Button>
+            <Settings /> Setings
+          </Button>
+        </SidebarFooter>
+      )}
     </Sidebar>
   );
 };

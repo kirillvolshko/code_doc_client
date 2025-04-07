@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { access_token } = useSelector((state: RootState) => state.auth);
   const { data, refetch } = useRefreshQuery({});
   const router = useRouter();
-  console.log(data);
   useEffect(() => {
     if (access_token) {
       if (data?.accessToken) {
