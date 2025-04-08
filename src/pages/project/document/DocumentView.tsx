@@ -22,12 +22,12 @@ export const DocumentView = () => {
       <NoDataMessage
         icon={<Send />}
         title="Select an existing code document or create a new one."
-        className="flex flex-col justify-center h-[calc(100vh-97.5px)] items-center"
+        className="flex flex-col justify-center h-[calc(100vh-97.5px)] items-center text-white font-semibold"
       />
     );
 
   return (
-    <div className="flex flex-row gap-5 p-[30px] max-h-[calc(100vh-157.5px)]">
+    <div className="flex flex-row gap-5 p-[30px] max-h-[calc(100vh-157.5px)] text-white">
       {data && <DocumentInformation data={data} />}
       <CommentsView />
     </div>

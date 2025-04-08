@@ -15,7 +15,7 @@ import { FileX2, Plus, File, Settings } from "lucide-react";
 import { ActionButton } from "../common/ui/ActionButton";
 import { DialogWindow } from "../common/ui/DialogWindow";
 import { CreateDocumentForm } from "@/pages/project/forms/CreateDocumentForm";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useUserId } from "@/hooks/useUserId";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -28,9 +28,10 @@ type SideBarProps = {
 
 export const SideBar = ({ data, creator, projectId }: SideBarProps) => {
   const { open: openSideBar } = useSidebar();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const userId = useUserId();
-
+  const active = searchParams?.get("doc");
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className={cn(openSideBar ? "flex items-end" : "")}>
@@ -54,7 +55,7 @@ export const SideBar = ({ data, creator, projectId }: SideBarProps) => {
             data.map((item) => (
               <SidebarMenuButton
                 tooltip={item.title}
-                className=""
+                className={cn(active === item.id ? "bg-primary/80" : "")}
                 key={item.id}
                 onClick={() =>
                   router.push(`?doc=${item.id}`, { scroll: false })
@@ -77,7 +78,8 @@ export const SideBar = ({ data, creator, projectId }: SideBarProps) => {
         <SidebarFooter>
           <Link href={`/settings?id=${projectId}`} className="w-full">
             <Button type="submit" className="w-full">
-              <Settings /> Settings
+              <Settings />{" "}
+              <span className={cn(openSideBar ? "" : "hidden")}>Settings</span>
             </Button>
           </Link>
         </SidebarFooter>

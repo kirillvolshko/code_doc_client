@@ -14,7 +14,7 @@ export const CommentItem = ({ data, index, userId }: CommentItemProps) => {
     <div
       className={cn(
         "p-2 rounded-md flex flex-col gap-2 w-full",
-        index % 2 === 0 ? "bg-blue-300" : "bg-transparent"
+        index % 2 === 0 ? "bg-white/20" : "bg-transparent"
       )}
     >
       <div className="flex justify-between">

@@ -56,7 +56,6 @@ export const TextEditor = <T extends FieldValues>({
       <ReactQuill
         placeholder={placeholder}
         className="border-none "
-        theme="snow"
         value={field.value || ""}
         onChange={handleChange}
       />

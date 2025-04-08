@@ -39,7 +39,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%
     --gray: 0, 0%, 33%;
     --gray-2: 0, 0%, 27%;
-    --primary-secondary: 74 18% 53%;
+    --primary-secondary: 220 75% 24%;
   }
   .dark {
     --background: 20 14.3% 4.1%;
@@ -66,7 +66,7 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%
-    --primary-secondary: 74 18% 53%;
+    --primary-secondary: 220 75% 24%;
   ;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -108,5 +108,9 @@
   background: transparent;
 }
 .ql-container{
+
   max-height: 300px;
+  max-width: 400px;
+  
+  color: white
 }

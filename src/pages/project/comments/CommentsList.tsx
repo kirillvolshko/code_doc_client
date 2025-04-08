@@ -26,7 +26,7 @@ export const CommentsList = () => {
       />
     );
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 max-h-[90%] overflow-y-auto">
       {data.map((comment, index) => (
         <CommentItem
           data={comment}
