@@ -47,7 +47,7 @@ export const DialogWindow = ({
 
       <DialogContent
         className={cn(
-          "bg-black/10 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg p-[20px] md:p-[30px] overflow-y-auto max-h-[80vh]",
+          "bg-primary/30 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg p-[20px] md:p-[30px] overflow-y-auto max-h-[80vh]",
           fullView && "p-0 border-none",
           className
         )}

@@ -7,9 +7,11 @@ import { Plus } from "lucide-react";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col gap-10 p-[30px] w-full ">
+    <div className="flex flex-col gap-10 p-[30px] w-full h-[calc(100vh-130px)]">
       <div className="flex items-center justify-between w-full">
-        <p className="text-xl font-semibold">Welcome back to the system</p>
+        <p className="text-white text-xl font-semibold">
+          Welcome back to the system
+        </p>
         <div>
           <DialogWindow
             triggerComponent={
@@ -19,9 +21,8 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <div>
-        <ProjectList />
-      </div>
+
+      <ProjectList />
     </div>
   );
 };

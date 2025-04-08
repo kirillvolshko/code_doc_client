@@ -61,7 +61,7 @@ const InputField = <T extends FieldValues>({
                   placeholder={placeholder}
                   {...field}
                   {...props}
-                  className={cn("placeholder:text-white", classNameInput)}
+                  className={cn("placeholder:text-white/50", classNameInput)}
                 />
               </div>
             </FormControl>

@@ -3,11 +3,12 @@ import { LogoutButton } from "../common/ui/LogoutButton";
 
 export const Header = () => {
   return (
-    <header className="flex justify-between p-[30px] bg-black/20">
+    <header className="flex justify-between p-[30px] bg-white/20">
       <Link href="/home">
-        <p className="text-[25px] font-semibold">
-          <span className="text-white">Code</span>Doc
-        </p>
+        <div className="">
+          <span className="text-white text-[25px] font-bold">Code</span>
+          <span className="text-primary text-[25px] font-bold">Doc</span>
+        </div>
       </Link>
       <LogoutButton />
     </header>

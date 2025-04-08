@@ -9,7 +9,7 @@ export const ProjectList = () => {
   const { data, error } = useGetProjectQuery(userId, { skip: !userId });
   useErrorHandler(error);
   return (
-    <div className="flex gap-5 overflow-x-auto">
+    <div className="flex flex-wrap p-[30px]  max-h-full">
       {data && data?.length > 0 ? (
         data?.map((item) => <ProjectCard key={item.id} data={item} />)
       ) : (
