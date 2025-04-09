@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 type TableProps<TData extends object> = {
   data: TData[];
@@ -35,8 +36,15 @@ export const TableComponent = <TData extends object>({
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <TableHead key={header.id}>
+            {headerGroup.headers.map((header, index) => (
+              <TableHead
+                key={header.id}
+                className={cn(
+                  "bg-primary text-white",
+                  index === 0 && "rounded-l-md",
+                  index === headerGroup.headers.length - 1 && "rounded-r-md"
+                )}
+              >
                 {flexRender(
                   header.column.columnDef.header,
                   header.getContext()
@@ -47,8 +55,11 @@ export const TableComponent = <TData extends object>({
         ))}
       </TableHeader>
       <TableBody>
-        {table.getRowModel().rows.map((row) => (
-          <TableRow key={row.id}>
+        {table.getRowModel().rows.map((row, index) => (
+          <TableRow
+            key={row.id}
+            className={cn((index + 1) % 2 === 0 && "bg-white/20")}
+          >
             {row.getVisibleCells().map((cell) => (
               <TableCell key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

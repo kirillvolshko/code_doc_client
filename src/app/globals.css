@@ -96,16 +96,17 @@
   height: 4px;
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--gray));
+  background: hsl(var(--primary)/50);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--gray-2));
+  background: hsl(var(--primary));
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.425);
 }
 .ql-container{
 
