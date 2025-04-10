@@ -1,7 +1,7 @@
 import { ActionButton } from "@/components/common/ui/ActionButton";
 import { DialogWindow } from "@/components/common/ui/DialogWindow";
-import { CreateProjectForm } from "@/pages/home/CreateProjectForm";
-import { ProjectList } from "@/pages/home/ProjectList";
+import CreateProjectForm from "@/pagesComponents/home/CreateProjectForm";
+import ProjectList from "@/pagesComponents/home/ProjectList";
 
 import { Plus } from "lucide-react";
 

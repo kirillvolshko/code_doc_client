@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { LoginForm } from "../../pages/auth/LoginForm";
-import { RegistrationForm } from "../../pages/auth/RegistrationForm";
+import LoginForm from "../../pagesComponents/auth/LoginForm";
+import RegistrationForm from "../../pagesComponents/auth/RegistrationForm";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 

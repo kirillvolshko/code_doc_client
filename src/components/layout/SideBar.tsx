@@ -14,7 +14,7 @@ import { IDocumentsResponse } from "@/types/document";
 import { FileX2, Plus, File, Settings } from "lucide-react";
 import { ActionButton } from "../common/ui/ActionButton";
 import { DialogWindow } from "../common/ui/DialogWindow";
-import { CreateDocumentForm } from "@/pages/project/forms/CreateDocumentForm";
+import CreateDocumentForm from "@/pagesComponents/project/forms/CreateDocumentForm";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUserId } from "@/hooks/useUserId";
 import { Button } from "../ui/button";

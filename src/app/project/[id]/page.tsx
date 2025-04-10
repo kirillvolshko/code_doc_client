@@ -5,7 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { SideBar } from "@/components/layout/SideBar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { useErrorHandler } from "@/hooks/useErrorHandler";
-import { DocumentView } from "@/pages/project/document/DocumentView";
+import DocumentView from "@/pagesComponents/project/document/DocumentView";
 import { useGetDocumentsQuery } from "@/store/documents/documentService";
 import { useGetProjectByIdQuery } from "@/store/project/projectService";
 import { useParams } from "next/navigation";

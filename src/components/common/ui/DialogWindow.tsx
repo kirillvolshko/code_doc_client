@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ReactElement } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import {
   Dialog,
   DialogClose,
@@ -8,7 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
 import { cn } from "@/lib/utils";
 
 interface DialogWindowProps {
@@ -23,12 +22,18 @@ interface DialogWindowProps {
 export const DialogWindow = ({
   content,
   fullView,
-
   triggerComponent,
   className,
   classNameTrigger,
 }: DialogWindowProps) => {
   const [open, setOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Ensure component only renders on the client side
+  }, []);
+
+  if (!isClient) return null; // Render nothing on the server side
 
   return (
     <Dialog open={open} onOpenChange={setOpen} modal={true}>

@@ -44,7 +44,7 @@ export const PopoverWindow = ({
         side={side}
         align={align}
         className={cn(
-          "mt-4 p-[20px] bg-popover overflow-auto max-w-screen-sm max-h-screen"
+          "mt-4 p-[20px] bg-primarySecondary overflow-auto max-w-screen-sm max-h-screen"
         )}
       >
         {content &&
