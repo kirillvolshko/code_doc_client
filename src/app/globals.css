@@ -115,3 +115,9 @@
   
   color: white
 }
+.ql-picker-label {
+  color: white;
+}
+.ql-stroke{
+  stroke: white !important;
+}
