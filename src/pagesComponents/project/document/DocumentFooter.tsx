@@ -25,7 +25,7 @@ const DocumentFooter = ({
               <User />
               <p>{editor ? editor : "Not changed yet document"}</p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               <Clock />
               <p>{date ? parsedDate(date) : "Not changed yet document"}</p>
             </div>

@@ -46,7 +46,7 @@ const EditCommentForm = ({
           name="content"
           placeholder="Input comment"
         />
-        <Button>Add comment</Button>
+        <Button>Edit</Button>
       </form>
     </Form>
   );

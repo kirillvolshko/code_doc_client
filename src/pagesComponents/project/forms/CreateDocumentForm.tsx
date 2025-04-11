@@ -53,7 +53,7 @@ const CreateDocumentForm = ({
           placeholder="Input code file title"
           name="title"
         />
-        <div className="min-h-[200px] overflow-visible">
+        <div className="min-h-[210px] overflow-visible ">
           <TextEditor
             control={form.control}
             label="Code description"
